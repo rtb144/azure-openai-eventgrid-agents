@@ -1,6 +1,6 @@
 # Azure OpenAI Coding & Review Agents — Documentation
 
-Detailed documentation for the event-driven AOAI coding and review agent system that coordinates via Azure Event Grid.
+Detailed documentation for the event-driven AOAI coding and review agent system that coordinates via Azure Event Grid. Agents use the GitLab instance available in the Azure environment as their source-control system of record.
 
 ## Contents
 
@@ -8,6 +8,7 @@ Detailed documentation for the event-driven AOAI coding and review agent system 
 - [Event Schema](Event-Schema.md)
 - [Terraform Guide](Terraform-Guide.md)
 - [Agent Implementation](Agent-Implementation.md)
+- [GitLab Integration](GitLab-Integration.md)
 - [Deployment & Operations](Deployment-Operations.md)
 
 ## Quick Links
