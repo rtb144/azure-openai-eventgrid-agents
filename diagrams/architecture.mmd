@@ -1,0 +1,55 @@
+```mermaid
+flowchart TB
+    User([Developer / API])
+
+    subgraph OpenAI["Azure OpenAI"]
+        AOAI[Azure OpenAI<br/>gpt-4o / gpt-4o-mini]
+    end
+
+    subgraph Event["Event Coordination"]
+        EG[Event Grid<br/>Custom Topic<br/>CloudEvents]
+    end
+
+    subgraph Agents["Agent Runtime"]
+        Coder[Coder Agent<br/>Function App]
+        Reviewer[Reviewer Agent<br/>Function App]
+    end
+
+    subgraph State["State & Artifacts"]
+        Blob[Blob Storage<br/>code-artifacts]
+        Cosmos[Cosmos DB<br/>workflows/tasks]
+    end
+
+    subgraph Obs["Observability"]
+        AppInsights[Application Insights<br/>+ Log Analytics]
+    end
+
+    Identity[Managed Identity<br/>+ RBAC]
+
+    User -->|TaskSubmitted| EG
+    EG -->|CodeGenerated| Coder
+    Coder -->|CodeGenerated| EG
+    EG -->|CodeGenerated| Reviewer
+    Reviewer -->|ReviewCompleted<br/>ChangesRequested| EG
+    EG -->|ChangesRequested| Coder
+
+    Coder -.-> AOAI
+    Reviewer -.-> AOAI
+    Coder -.-> Blob
+    Reviewer -.-> Blob
+    Coder -.-> Cosmos
+    Reviewer -.-> Cosmos
+
+    Coder -.-> AppInsights
+    Reviewer -.-> AppInsights
+    Identity -.-> AOAI
+    Identity -.-> EG
+    Identity -.-> Blob
+    Identity -.-> Cosmos
+
+    style OpenAI fill:#E5F5FD
+    style Event fill:#E5F5FD
+    style Agents fill:#E5F5FD
+    style State fill:#E5F5FD
+    style Obs fill:#E5F5FD
+```
