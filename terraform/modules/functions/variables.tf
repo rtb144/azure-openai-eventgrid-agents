@@ -1,0 +1,15 @@
+variable "resource_group_name" { type = string }
+variable "location" { type = string }
+variable "project_name" { type = string }
+variable "environment" { type = string }
+variable "storage_account_name" { type = string }
+variable "storage_account_access_key" { type = string }
+variable "application_insights_key" { type = string }
+variable "application_insights_conn" { type = string }
+variable "openai_endpoint" { type = string }
+variable "openai_id" { type = string }
+variable "eventgrid_topic_endpoint" { type = string }
+variable "eventgrid_topic_id" { type = string }
+variable "cosmos_endpoint" { type = string }
+variable "cosmos_primary_key" { type = string }
+variable "tags" { type = map(string) }
